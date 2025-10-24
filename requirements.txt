@@ -1,0 +1,11 @@
+torch
+transformers
+peft
+accelerate
+datasets
+scipy
+tqdm
+lm-eval
+wandb
+python-chess
+pyyaml

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chess-expert-moe"
+version = "0.1.0"
+description = "Standalone Chess Expert Mixture-of-Experts adapter for causal language models."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = [
+    "torch",
+    "transformers",
+    "peft",
+    "accelerate",
+    "datasets",
+    "scipy",
+    "tqdm",
+    "lm-eval",
+    "wandb",
+    "python-chess",
+    "pyyaml",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

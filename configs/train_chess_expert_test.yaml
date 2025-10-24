@@ -1,0 +1,42 @@
+stage: sft
+model_name_or_path: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+dataset: data/chess_stockfish.jsonl
+cutoff_len: 256
+max_samples: 100
+finetuning_type: lora
+ddp_backend: nccl
+
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 3e-4
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+num_train_epochs: 1
+
+max_steps: 1
+save_steps: 1000
+logging_steps: 1
+fp16: false
+bf16: false
+report_to: none
+
+do_train: true
+resize_vocab: true
+
+output_dir: ./outputs/chess_expert_test
+overwrite_output_dir: true
+
+use_method: chess_expert
+chess_num_experts: 3
+chess_top_k: 1
+chess_aux_loss_coef: 0.01
+chess_layers_to_transform: "0,1,2"
+chess_stage: 1
+chess_debug_mode: false
+chess_include_expert: true
+chess_feature_size: 1
+chess_hidden_dim: 128
+chess_dropout: 0.1
+chess_routing_bias: 0.0
+gradient_checkpointing: true
+logging_first_step: true
