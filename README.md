@@ -1,4 +1,4 @@
-# Chess Expert MoE (Standalone)
+# Chess Expert MoE
 
 Chess Expert MoE is a focused spin-out of the adapter work that combines mixture-of-experts routing with chess-aware features.  It can be used to fine-tune LLaMA-style causal language models so that a dedicated “chess expert” branch is available during training and inference.
 
@@ -28,11 +28,6 @@ The layout mirrors the original research prototype but removes cross-repo depend
    pip install -e .
    ```
    (Use `pip install -r requirements.txt` if you prefer not to install the package.)
-
-2. **Set the source path (if not installing as a package)**
-   ```bash
-   export PYTHONPATH="$(pwd)/src"
-   ```
 
 3. **Run the smoke-test training loop**
    ```bash
@@ -66,11 +61,3 @@ python data_prep/chess/build_stockfish_dataset.py \
 - `src/core/` – shared abstractions (logging, adapter plumbing, aux-loss wrapper).
 - `src/train_chess_expert.py` – primary training entry point.
 - `src/evaluation.py` – Trainer subclass that can trigger lm-evaluation-harness.
-
-## Next Steps
-
-- Plug in a GPU-backed environment and increase `max_steps` for longer runs.
-- Enable lm-eval tasks via the `HarnessTrainer` and a task list in your config.
-- Replace synthetic chess signals with NNUE-derived features once available.
-
-> **Tip:** keep `WANDB_DISABLED=true` for offline experiments; remove it to log to Weights & Biases when credentials are configured.
